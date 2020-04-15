@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissor</title>
+</head>
+
+<body>
+
+    <script>
+
+        // computer random choice
+
+        let choices = ['rock', 'paper', 'scissor'];
+
+        function computerSelection() {
+            return choices[Math.floor(Math.random() * choices.length)];
+        }
+
+      
+         // function to check who is gonna win the game.
+
+        function playRound(playerChoice) { //("rock")
+
+            let cpuChoice = computerSelection();
+
+            switch (playerChoice + cpuChoice) {
+
+                case "rockscissor":
+                case "paperrock":
+                case "scissorpaper":
+                    playerWin(playerChoice, cpuChoice);
+                    break;
+                case "rockpaper":
+                case "paperscissor":
+                case "scissorrock":
+                    computerWin(playerChoice, cpuChoice);
+                    break;
+                case "rockrock":
+                case "paperpaper":
+                case "scissorscissor":
+                    draw(playerChoice, cpuChoice);
+                    break;
+
+            }
+        }
+
+
+        // display score and winner of the round on console.
+
+        let playerScore = 0;
+        let cpuScore = 0;
+
+        function playerWin(playerChoice, cpuChoice) {
+            playerScore++;
+            console.log(playerChoice + " beats " + cpuChoice + " you won this round.")
+            console.log(`Player ${playerScore}: ${cpuScore} CPU `);
+
+        }
+
+        function computerWin(playerChoice, cpuChoice) {
+            cpuScore++;
+            console.log(playerChoice + " loses to " + cpuChoice + " you lost this round.")
+            console.log(`Player ${playerScore}: ${cpuScore} CPU `);
+        }
+
+
+        function draw(playerChoice, cpuChoice) {
+            console.log(playerChoice + " equals to " + cpuChoice + " it's a draw.")
+            console.log(`Player ${playerScore}:${cpuScore} CPU `);
+        }
+
+
+        
+        // trigger the game five times.
+        
+
+        function game() {
+
+            for (i = 0; i < 5; i++) {
+
+                let playerChoice = prompt("Choose rock, paper or scissor").toLocaleLowerCase();
+
+                playRound(playerChoice);
+
+                   if (playerChoice !== "rock" && playerChoice !== "paper" && playerChoice !== "scissor") {
+                    alert("Only rock, paper or scissor");
+                    i--;
+                    playRound();
+                }
+              }
+             }
+
+            //  display final result on console.
+                
+        function score() {
+                if (playerScore > cpuScore) {
+                    console.log("YOU ARE THE WINNER! -> FINAL SCORE: PLAYER " + playerScore+ ":"+ cpuScore + " CPU");
+                } else if (playerScore < cpuScore) {
+                    console.log("CPU IS THE WINNER -> FINAL SCORE: PLAYER " + playerScore+ ":"+ cpuScore + " CPU");
+                } else if (playerScore == cpuScore) {
+                    console.log("IT'S A DRAW -> FINAL SCORE: PLAYER " + playerScore+ ":"+ cpuScore + " CPU");
+                }
+            }
+
+        game();
+        score();
+
+    </script>
+
+</body>
+
+</html>
